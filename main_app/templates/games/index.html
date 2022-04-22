@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for game in games %}
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ game.name }}</span>
+        <p>Price: ${{ game.price }}</p>
+        <p>{{game.summary}}</p>
+        {% if game.series %}
+            <p>Series: {{ game.series }}</p>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+    
+{% endblock content %}
+    
