@@ -1,23 +1,19 @@
-{% extends 'base.html' %}
-{% block content %}
-
-{% for game in games %}
+{% extends 'base.html' %} {% block content %} {% for game in games %}
 <div class="card">
+  <a href="{% url 'detail' game.id %}">
     <div class="card-content">
-        <span class="card-title">{{ game.name }}</span>
-        
-        {% if game.price != 0%}
-            <p>Price: ${{ game.price }}</p>
-        {% else %}
-            <p>Price: Free</p>
-        {% endif %}
-        <p>{{game.summary}}</p>
-        {% if game.series != 'None' %}
-            <p>Series: {{ game.series }}</p>
-        {% endif %}
+      <span class="card-title">{{ game.name }}</span>
+
+      {% if game.price != 0%}
+      <p>Price: ${{ game.price }}</p>
+      {% else %}
+      <p>Price: Free</p>
+      {% endif %}
+      <p>{{game.summary}}</p>
+      {% if game.series != 'None' %}
+      <p>Series: {{ game.series }}</p>
+      {% endif %}
     </div>
+  </a>
 </div>
-{% endfor %}
-    
-{% endblock content %}
-    
+{% endfor %} {% endblock content %}
