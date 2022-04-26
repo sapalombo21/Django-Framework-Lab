@@ -1,5 +1,5 @@
 from dataclasses import field
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .forms import ReviewForm
 
 # Create your views here.
@@ -21,6 +21,14 @@ def games_detail(request, game_id):
     game = Game.objects.get(id=game_id)
     review_form = ReviewForm()
     return render(request, 'games/detail.html', {'game': game, 'review_form': review_form})
+
+def add_review(request, game_id):
+    form = ReviewForm(request.POST)
+    if form.is_valid():
+        new_review = form.save(commit=False)
+        new_review.game_id = game_id
+        new_review.save()
+    return redirect('detail', game_id=game_id)
 
 class GameCreate(CreateView):
     model = Game
