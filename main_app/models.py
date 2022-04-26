@@ -22,4 +22,7 @@ class Review(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE) # game_id
     def __str__(self):
         return f"{self.review}: {self.rating}, {self.date}"
+    
+    class Meta:
+        ordering = ['-date']
 
