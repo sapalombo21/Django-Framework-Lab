@@ -1,5 +1,6 @@
 from dataclasses import field
 from django.shortcuts import render
+from .forms import ReviewForm
 
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
@@ -18,7 +19,8 @@ def games_index(request):
 
 def games_detail(request, game_id):
     game = Game.objects.get(id=game_id)
-    return render(request, 'games/detail.html', {'game': game})
+    review_form = ReviewForm()
+    return render(request, 'games/detail.html', {'game': game, 'review_form': review_form})
 
 class GameCreate(CreateView):
     model = Game
