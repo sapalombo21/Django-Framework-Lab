@@ -1,7 +1,9 @@
+from dataclasses import field
 from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Game
 
 def home(request):
@@ -17,3 +19,16 @@ def games_index(request):
 def games_detail(request, game_id):
     game = Game.objects.get(id=game_id)
     return render(request, 'games/detail.html', {'game': game})
+
+class GameCreate(CreateView):
+    model = Game
+    fields = '__all__'
+    success_url = '/games/'
+
+class GameUpdate(UpdateView):
+    model = Game
+    fields = ['summary','price','series']
+
+class GameDelete(DeleteView):
+    model = Game
+    success_url = '/games/'
