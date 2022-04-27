@@ -46,6 +46,27 @@
     </table>
   </div>
 </div>
+<hr>
+<div class="row">
+    <div class="col s6">
+        <h3>{{game.name}}'s engines</h3>
+        
+        {% if game.engine.count %}
+            
+            {% for eng in game.engine.all %}
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">
+                            {{eng.name}} version {{eng.version}}
+                        </span>
+                    </div>
+                </div>
+            {% endfor %}             
+        {% else %}
+            <h5>No engines.</h5>
+        {% endif %}
+    </div>
+</div>
 <script>
     const dateEl = document.getElementById('id_date');
     M.Datepicker.init(dateEl, {
