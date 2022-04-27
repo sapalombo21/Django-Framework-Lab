@@ -5,7 +5,7 @@ from .forms import ReviewForm
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Game
+from .models import Game, Engine
 
 def home(request):
     return HttpResponseRedirect('/games')
@@ -19,8 +19,9 @@ def games_index(request):
 
 def games_detail(request, game_id):
     game = Game.objects.get(id=game_id)
+    engines_game_doesnt_have = Engine.objects.exclude(id__in = game.engine.all().values_list('id'))
     review_form = ReviewForm()
-    return render(request, 'games/detail.html', {'game': game, 'review_form': review_form})
+    return render(request, 'games/detail.html', {'game': game, 'review_form': review_form, 'engines': engines_game_doesnt_have})
 
 def add_review(request, game_id):
     form = ReviewForm(request.POST)

@@ -46,37 +46,33 @@
     </table>
   </div>
 </div>
-<hr>
+<hr />
 <div class="row">
-    <div class="col s6">
-        <h3>{{game.name}}'s engines</h3>
-        
-        {% if game.engine.count %}
-            
-            {% for eng in game.engine.all %}
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">
-                            {{eng.name}} version {{eng.version}}
-                        </span>
-                    </div>
-                </div>
-            {% endfor %}             
-        {% else %}
-            <h5>No engines.</h5>
-        {% endif %}
+  <div class="col s6">
+    <h3>{{game.name}}'s engines</h3>
+
+    {% if game.engine.count %} {% for eng in game.engine.all %}
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">
+          {{eng.name}} {% if eng.version != '0' %} {{eng.version}} {% endif %}
+        </span>
+      </div>
     </div>
+    {% endfor %} {% else %}
+    <h5>No engines.</h5>
+    {% endif %}
+  </div>
 </div>
 <script>
-    const dateEl = document.getElementById('id_date');
-    M.Datepicker.init(dateEl, {
-        format: 'yyyy-mm-dd',
-        defaultDate: new Date(),
-        setDefaultDate: true,
-        autoClose: true
-    });
+  const dateEl = document.getElementById("id_date");
+  M.Datepicker.init(dateEl, {
+    format: "yyyy-mm-dd",
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true,
+  });
 
-    const ratingEl = document.getElementById('id_rating');
-    
+  const ratingEl = document.getElementById("id_rating");
 </script>
 {% endblock content %}
