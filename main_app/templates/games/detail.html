@@ -58,6 +58,9 @@
           {{eng.name}} {% if eng.version != '0' %} {{eng.version}} {% endif %}
         </span>
       </div>
+      <div class="card-action">
+          <a href="{% url 'engine_remove' game.id eng.id %}">Remove</a>
+      </div>
     </div>
     {% endfor %} {% else %}
     <h5>No engines.</h5>

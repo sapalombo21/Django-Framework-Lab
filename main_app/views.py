@@ -35,6 +35,11 @@ def assoc_engine(request, game_id, engine_id):
     Game.objects.get(id=game_id).engine.add(engine_id)
     return redirect('detail', game_id=game_id)
 
+def engine_remove(request, game_id, engine_id):
+    engine = Engine.objects.get(id=engine_id)
+    Game.objects.get(id=game_id).engine.remove(engine)
+    return redirect('detail', game_id=game_id)
+
 class GameCreate(CreateView):
     model = Game
     fields = ['name', 'summary','price','series']
