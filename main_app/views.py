@@ -37,7 +37,7 @@ def assoc_engine(request, game_id, engine_id):
 
 class GameCreate(CreateView):
     model = Game
-    fields = '__all__'
+    fields = ['name', 'summary','price','series']
     success_url = '/games/'
 
 class GameUpdate(UpdateView):

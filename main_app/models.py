@@ -11,7 +11,7 @@ class Game(models.Model):
     summary = models.TextField(max_length=250)
     price = models.FloatField()
     series = models.CharField(max_length=200)
-    engine = models.ManyToManyField(Engine)
+    engine = models.ManyToManyField(Engine, blank=True)
     def __str__(self):
         return self.name
 
