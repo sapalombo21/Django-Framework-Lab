@@ -2,12 +2,16 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
+class Engine(models.Model):
+    name = models.CharField(max_length=200)
+    version = models.CharField(max_length=200)
+
 class Game(models.Model):
     name = models.CharField(max_length=200)
     summary = models.TextField(max_length=250)
     price = models.FloatField()
     series = models.CharField(max_length=200)
-
+    engine = models.ManyToManyField(Engine)
     def __str__(self):
         return self.name
 
