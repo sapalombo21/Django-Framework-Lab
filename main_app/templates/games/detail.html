@@ -63,6 +63,27 @@
     <h5>No engines.</h5>
     {% endif %}
   </div>
+  <div class="col s6">
+    <h3>Available Engines</h3>
+
+    {% if engines.count %} {% for eng in engines %}
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">
+          {{eng.name}} {% if eng.version != '0' %} {{eng.version}} {% endif %}
+        </span>
+      </div>
+      <div class="card-action">
+        <form action="{% url 'assoc_engine' game.id eng.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn">Add</button>
+        </form>
+      </div>
+    </div>
+    {% endfor %} {% else %}
+    <h5>{{game.name}} Already has all engines available</h5>
+    {% endif %}
+  </div>
 </div>
 <script>
   const dateEl = document.getElementById("id_date");

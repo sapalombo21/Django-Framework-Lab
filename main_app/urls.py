@@ -10,4 +10,5 @@ urlpatterns = [
     path('games/<int:pk>/update', views.GameUpdate.as_view(), name='games_update'),
     path('games/<int:pk>/delete', views.GameDelete.as_view(), name='games_delete'),
     path('games/<int:game_id>/add_review/', views.add_review, name='add_review'),
+    path('games/<int:game_id>/assoc_engine/<int:engine_id>/', views.assoc_engine, name='assoc_engine'),
 ]

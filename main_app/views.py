@@ -31,6 +31,10 @@ def add_review(request, game_id):
         new_review.save()
     return redirect('detail', game_id=game_id)
 
+def assoc_engine(request, game_id, engine_id):
+    Game.objects.get(id=game_id).engine.add(engine_id)
+    return redirect('detail', game_id=game_id)
+
 class GameCreate(CreateView):
     model = Game
     fields = '__all__'
