@@ -47,3 +47,8 @@ class GameUpdate(UpdateView):
 class GameDelete(DeleteView):
     model = Game
     success_url = '/games/'
+
+class EngineCreate(CreateView):
+    model = Engine
+    fields = '__all__'
+    success_url = '/games'

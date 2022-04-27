@@ -1,9 +1,9 @@
 {% extends 'base.html' %} {% block content %} {% if object %}
 <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
 {% else %}
-<h1>Add Game</h1>
+<h1>Add Engine</h1>
 {% endif %}
-
+<h4>Set version to 0 to make it blank</h4>
 <form action="" method="post">
   {% csrf_token %}
   <table>
